@@ -1,5 +1,4 @@
-import Link from 'next/link'
-
+import Link from 'next/link';
 
 export default function Footer() {
     return (
@@ -8,23 +7,21 @@ export default function Footer() {
                 <div className="flex flex-col md:flex-row justify-between items-center">
                     <div className="mb-4 md:mb-0">
                         <Link href="/" className="flex items-center space-x-2">
-                            {/* Reference the logo correctly */}
                             <img src="/logo.png" alt="Logo" className="h-8 w-auto" />
-                            <span className="text-xl font-bold text-light"> ShaniAegis</span>
+                            <span className="text-xl font-bold text-light">ShaniAegis</span>
                         </Link>
                     </div>
                     <div className="flex space-x-4">
-                        {/* Update href for actual pages */}
-                        <Link href="/about" className="hover:text-light">About</Link>  {/* Updated About link */}
+                        <Link href="/about" className="hover:text-light">About</Link>
                         <Link href="/privacy-policy" className="hover:text-light">Privacy Policy</Link>
                         <Link href="/terms-of-service" className="hover:text-light">Terms of Service</Link>
-                        <Link href="./contact" className="hover:text-light">Contact</Link>
+                        <Link href="/contact" className="hover:text-light">Contact</Link>
                     </div>
                 </div>
                 <div className="mt-4 text-center text-sm text-light">
-                    © {new Date().getFullYear()} ShaniAegis . All rights reserved.
+                    © {new Date().getFullYear()} ShaniAegis. All rights reserved.
                 </div>
             </div>
         </footer>
-    )
+    );
 }
