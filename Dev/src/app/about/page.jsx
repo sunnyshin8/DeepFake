@@ -1,10 +1,14 @@
 'use client';
 
 import { GraduationCap, Users, Shield, Brain } from 'lucide-react';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 export default function About() {
   return (
-    <section className="min-h-screen bg-gradient-to-b from-gray-900 via-blue-900 to-gray-900 text-white py-20">
+    <section >
+       <Navbar />
+       <div className="min-h-screen bg-gradient-to-b from-gray-900 via-blue-900 to-gray-900 text-white py-20">
       <div className="container mx-auto px-4">
         {/* Hero Section */}
         <div className="text-center mb-16">
@@ -94,6 +98,8 @@ export default function About() {
           </div>
         </div>
       </div>
+      </div>
+      <Footer />
     </section>
   );
 }

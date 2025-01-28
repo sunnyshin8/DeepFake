@@ -19,7 +19,8 @@ export default function Navbar() {
                     <span className="text-xl font-bold text-white">ShaniAegis</span>
                 </Link>
                 <div className="hidden md:flex space-x-8">
-                    <Link href="#about" className="text-gray-300 hover:text-primary">About</Link>
+                    <Link href="/about" className="text-gray-300 hover:text-primary">About</Link>
+                    <Link href="/contact" className="text-gray-300 hover:text-primary">Contact</Link>
                     <Link href="#what-is-deepfake" className="text-gray-300 hover:text-primary">What is Deepfake</Link>
                     <Link href="#why-dangerous" className="text-gray-300 hover:text-primary">Why it's Dangerous</Link>
                 </div>
