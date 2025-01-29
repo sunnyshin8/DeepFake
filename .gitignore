@@ -2,3 +2,5 @@
 /venv
 /DeepFake Dataset
 /faces_224
+data.sh
+deep-detection.ipynb
