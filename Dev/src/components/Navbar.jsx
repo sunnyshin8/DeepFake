@@ -1,4 +1,5 @@
 'use client';
+import { useSession, signIn, signOut } from "next-auth/react";
 
 import Link from 'next/link';
 import { Eye, Menu } from 'lucide-react';
@@ -10,6 +11,8 @@ import {
 } from '@/components/ui/sheet';
 
 export default function Navbar() {
+    
+  const { data: session } = useSession();
     return (
         <header className="sticky top-0 z-50 bg-gradient-to-r from-gray-900 via-black to-gray-900 text-white shadow-lg">
             <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -23,6 +26,11 @@ export default function Navbar() {
                     <Link href="/contact" className="text-gray-300 hover:text-primary">Contact</Link>
                     <Link href="#what-is-deepfake" className="text-gray-300 hover:text-primary">What is Deepfake</Link>
                     <Link href="#why-dangerous" className="text-gray-300 hover:text-primary">Why it's Dangerous</Link>
+                    {session ? (
+                        <button onClick={() => signOut()} className="text-gray-300 hover:text-primary">Sign out</button>
+                    ) : (
+                        <button onClick={() => signIn()} className="text-gray-300 hover:text-primary">Sign in</button>
+                    )}
                 </div>
                 <Sheet>
                     <SheetTrigger asChild>
