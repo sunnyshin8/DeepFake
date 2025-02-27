@@ -1,6 +1,8 @@
 /requirment.txt
 /venv
 /DeepFake Dataset
+/Deepfake/aigenerated
+/Deepfake/Original
+/Deepfake/deepfake_detection_model.h5
 /faces_224
 data.sh
-deep-detection.ipynb
