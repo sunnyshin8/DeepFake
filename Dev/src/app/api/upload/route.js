@@ -11,6 +11,11 @@ export async function POST(req) {
             return NextResponse.json({ error: 'No file uploaded' }, { status: 400 });
         }
 
+        // ensure that the file is an image
+        if (!file.type.startsWith('image/')) {
+            return NextResponse.json({ error: 'Invalid file type' }, { status: 400 });
+        }
+
         const cloudinaryData = new FormData();
         cloudinaryData.append('file', file);
         cloudinaryData.append('upload_preset', process.env.CLOUDINARY_UPLOAD_PRESET);
@@ -32,12 +37,12 @@ export async function POST(req) {
         const data = await cloudinaryResponse.json();
 
         if (!cloudinaryResponse.ok) {
-            return NextResponse.json({ error: data.error.message || 'Cloudinary upload failed' }, { status: cloudinaryResponse.status });
+            return NextResponse.json({ error: data.error.message || 'Image upload failed' }, { status: cloudinaryResponse.status });
         }
 
-        return NextResponse.json({ secure_url: data.secure_url });
+        return NextResponse.json({ imageUrl: data.secure_url });
     } catch (error) {
         console.error('Cloudinary upload error:', error);
-        return NextResponse.json({ error: 'Cloudinary upload failed' }, { status: 500 });
+        return NextResponse.json({ error: 'Image upload failed' }, { status: 500 });
     }
 }

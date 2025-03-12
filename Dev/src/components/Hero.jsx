@@ -54,10 +54,12 @@ export default function Hero() {
         throw new Error(data.error || 'Failed to upload image');
       }
 
-      return data.secure_url;
+      return { success: true, imageUrl: data.imageUrl };
     } catch (error) {
-      console.error('Error uploading image:', error);
-      toast.error("Failed to upload image");
+      return {
+        success: false,
+        error: error.message || 'Failed to upload image',
+      }
     }
   };
 
@@ -71,7 +73,11 @@ export default function Hero() {
 
       if (file) {
         const uploadData = await handleFileUpload(file);
-        imageUrlToCheck = uploadData;
+        console.log(uploadData);
+        if (!uploadData.success) {
+          throw new Error(uploadData.error);
+        }
+        imageUrlToCheck = uploadData.imageUrl;
       }
 
       const response = await fetch(`/api/detect?imageUrl=${encodeURIComponent(imageUrlToCheck)}`, {
@@ -83,7 +89,7 @@ export default function Hero() {
       setResult(data);
     } catch (error) {
       console.error('Error detecting deepfake:', error);
-      toast.error("Failed to detect deepfake");
+      toast.error("Failed to detect deepfake: " + error);
     } finally {
       setLoading(false);
     }
