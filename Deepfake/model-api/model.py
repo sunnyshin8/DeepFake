@@ -8,13 +8,17 @@ import requests
 from io import BytesIO
 
 # Load the model
+model = None
 model_path = 'deepfake_detection_model.h5'
-try:
-    model = load_model(model_path)
-    print(f"Model loaded successfully from {model_path}")
-except Exception as e:
-    print(f"Error loading model: {e}")
-    model = None
+
+if not model:
+    if not os.path.exists(model_path):
+        raise ValueError(f"Model file not found at {model_path}")
+    try:
+        model = load_model(model_path)
+        print(f"Model loaded successfully from {model_path}")
+    except Exception as e:
+        print(f"Error loading model: {e}")
 
 def preprocess_image(img, target_size=(224, 224)):
     """
@@ -73,14 +77,12 @@ def predict_deepfake(img_input):
     processed_img = preprocess_image(img)
     
     # Make prediction
-    prediction = model.predict(processed_img)[0][0]
-    print(f"Prediction: {prediction}")
+    prediction = model.predict(processed_img, verbose=0)[0][0]
     
     # Interpret results (assuming model outputs probability of being real)
     # If prediction is close to 0, it's likely a deepfake
     # If prediction is close to 1, it's likely real
     is_deepfake = bool(prediction < 0.5)
-    print(f"Is deepfake: {is_deepfake}")
     
     # Calculating from prediction
     confidence = 1 - prediction if is_deepfake else prediction
