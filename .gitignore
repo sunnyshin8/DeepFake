@@ -1,6 +1,12 @@
 /requirment.txt
 /venv
 /DeepFake Dataset
+/Deepfake/aigenerated
+/Deepfake/Original
+/Deepfake/deepfake_detection_model.h5
+/Deepfake/deepfake_detection_model_old.h5
+/Deepfake/model-api/deepfake_detection_model.h5
 /faces_224
 data.sh
-deep-detection.ipynb
+
+__pycache__/
